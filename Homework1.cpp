@@ -112,7 +112,7 @@ void Number4() {
         if (b == 0) {
             cout << "No roots" << endl;
         } else if (c != 0) {
-            cout << "x = " << -b / c << endl;
+            cout << "x = " << -c / b << endl;
         } else {
             cout << "x = " << 0.0 << endl;
         }
