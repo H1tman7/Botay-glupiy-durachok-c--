@@ -161,6 +161,7 @@ void Number5(){
 
 int main() {
     cout << "HELLO AMIGOS\n";
+    cout << "NORM COD TAKTO";
     cout << "Homework 1\n";
     end();
 
