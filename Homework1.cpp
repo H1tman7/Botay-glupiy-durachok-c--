@@ -160,6 +160,7 @@ void Number5(){
 
 
 int main() {
+    cout << "HELLO AMIGOS\n";
     cout << "Homework 1\n";
     end();
 
