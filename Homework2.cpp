@@ -79,9 +79,7 @@ void Number3() {
     cout << "Enter b: ";
     cin >> b;
 
-    cout << "log(e)(" << b << " - " << y << ") * sqrt(" << b << " - " << x
-         << ")" << endl
-         << "Answer: ";
+    cout << "log(e)(" << b << " - " << y << ") * sqrt(" << b << " - " << x << ")" << endl << "Answer: ";
 
     if (b - y <= 0 || b - x < 0)
         cout << "Error" << endl;
@@ -103,7 +101,7 @@ void Number4() {
     cout << "Enter count of numbers: ";
     cin >> N;
 
-    cout << "Up:1 Down:-1:   ";
+    cout << "Up:1 Down:-1: ";
     cin >> B;
 
     cout << "Enter Step: ";
@@ -130,11 +128,8 @@ void Number4() {
 }
 
 void Number5(){
-
-    float x = -4;
-
     cout << "Number 5" << endl;
-
+    
     cout << setw(5) << "x" << setw(5) << "|" << setw(6) << "y" << endl;
 
     for (float x =-4; x <= 4; x += 0.5){
@@ -154,7 +149,7 @@ int main() {
     while (true) {
         switch (num_task) {
             case 0:
-                cout << "Ok, programm is finished.";
+                cout << "Ok, programm is finished." << endl;
                 return 0;
                 
             case 1:
@@ -178,12 +173,10 @@ int main() {
                 break;
 
             default:
-                cout << "Probably you entered an incorrect number. Try again!"
-                     << endl;
+                cout << "Probably you entered an incorrect number. Try again!" << endl;
                 end();
                 break;
         }
     }
-
     return 0;
 }
