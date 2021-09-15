@@ -130,13 +130,26 @@ void Number4() {
 void Number5(){
     cout << "Number 5" << endl;
     
-    cout << setw(5) << "x" << setw(5) << "|" << setw(6) << "y" << endl;
+    cout << setw(3) << "x" << setw(4) << "|" << setw(5) << "y" << endl;
 
-    for (float x =-4; x <= 4; x += 0.5){
-        cout << setw(17) << setfill('-') << "" << endl;
-        cout << setfill(' ') << setw(5) << x << setw(5) << "|" << setprecision(3) << setw(7) << (x * x - 2 * x  + 2)/(x - 1) << endl;
+    for (float x =-4.0; x <= 4.0; x += 0.5){
+        cout << setw(16) << setfill('-') << "" << endl;
+        if (x < 0){
+            cout << setprecision(2) << fixed << right << x << " | " << setprecision(3) << setw(3) << fixed << right << (x * x - 2 * x  + 2)/(x - 1) << endl;
+        }
+        else if (x >= 0 && x != 1){
+            if ( (x * x - 2 * x  + 2)/(x - 1) < 0){
+            cout << " " << setprecision(2) << fixed << right << x << " | " << setprecision(3) << fixed << (x * x - 2 * x  + 2)/(x - 1) << endl;
+            }else{
+            cout << " " << setprecision(2) << fixed << right << x << " |  " << setprecision(3) << fixed << (x * x - 2 * x  + 2)/(x - 1) << endl;    
+            }
+        }
+        else {
+            cout << " " << setprecision(2) << fixed << right << x << " |  Error" << endl;
+        }
+
     }
-    cout << setw(17) << setfill('-') << "" << endl;
+    cout << setw(16) << setfill('-') << "" << endl;
     end();
     return;
 }
