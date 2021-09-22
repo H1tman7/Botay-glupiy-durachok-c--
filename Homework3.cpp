@@ -18,6 +18,10 @@ int end() {
     return num_task;
 }
 
+int comp (const void *i, const void *j){
+    return *((char*)i) - *((char*)j);
+}
+
 void Number1() {
     cout << "Number 1" << endl;
 
@@ -133,7 +137,7 @@ void Number4(){
     return;
 }
 
-/*
+
 void Number5(){
     cout << "Number 5" << endl;
     char string[30];
@@ -144,16 +148,21 @@ void Number5(){
         cin >> string[i];
     }
 
+    cout << "Original:" << endl;
     for(int i = 0; i < 30; i++){
-        cout << i+1 << "element = " << string[i] << endl;
+        cout << string[i];
     }
 
-    std::sort();
+    qsort(string, 30, sizeof (char), (int(*) (const void *, const void *)) comp);
 
-
+    cout << "\nSorted:" << endl;
+    for(int i = 0; i < 30; i++){
+        cout << string[i];
+    }
+    cout << endl;
     return;
 }
-*/
+
 
 
 int main() {
@@ -181,11 +190,11 @@ int main() {
         case 4:
             Number4();
             break;
-/*
+
         case 5:
             Number5();
             break;
-*/
+
         default:
             cout << "Probably you entered an incorrect number. Try again!" << endl;
             break;
@@ -193,14 +202,6 @@ int main() {
     }
     return 0;
 }
-
-
-/*
-5 task - русский алфавит. не использ. библиотеку. пузырек
-        нельзя вектора.... можно - циклы массивы, if-ы
-*/
-
-
 
 
 /*
