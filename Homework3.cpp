@@ -3,23 +3,20 @@
 #include <fstream>
 #include <string>
 #include <stdbool.h>
-// #include <map>
-// #include <functional>
-// using dict_fun_t = map<int, function<void()>>;
-
 
 using namespace std;
 
 int num_task;
-
 int end() {
     cout << "Enter number of task (if you want to exit the programm, enter 0): ";
     cin >> num_task;
     return num_task;
 }
 
-int comp (const void *i, const void *j){
-    return *((char*)i) - *((char*)j);
+void swap(char *xp, char *yp){
+    char temp = *xp;
+    *xp = *yp;
+    *yp = temp;
 }
 
 void Number1() {
@@ -38,7 +35,11 @@ void Number1() {
         return;
     }
 
-    cout << "Monthly payment = " << (S * p / 100 * pow((1 + p / 100), n)) / (12 * (pow(1 + p / 100, n) - 1)) << endl;
+    if (p == 0){
+        cout << "Monthly payment = " << S / 12 << endl;
+    }
+    else
+        cout << "Monthly payment = " << (S * p / 100 * pow((1 + p / 100), n)) / (12 * (pow(1 + p / 100, n) - 1)) << endl;
 
     return;
 }
@@ -72,8 +73,8 @@ void Number2() {
     }
 
     cout << "Answer = " << ans << " %" << endl;
-    return;
 
+    return;
 }
 
 void Number3() {
@@ -134,35 +135,58 @@ void Number4(){
         }
     }
     printf("\n");
+
     return;
 }
 
-
 void Number5(){
     cout << "Number 5" << endl;
-    char string[30];
+
+    int N = 30;
+    char string[30 + 1] = { '\0' }; //string[N+1]
 
     cout << "Enter 30-letters string: " << endl;
-
-    for(int i = 0; i < 30; i++){
+    for(int i = 0; i < N; i++){
         cin >> string[i];
     }
 
-    cout << "Original:" << endl;
-    for(int i = 0; i < 30; i++){
-        cout << string[i];
-    }
+    for (int i = 0; i < N - 1; i++){
+        bool sorted = true;
 
-    qsort(string, 30, sizeof (char), (int(*) (const void *, const void *)) comp);
+        for (int j = 1; j < N - i; j++){
+            char f, s;
+
+            if (string[j - 1] >= 'A' && string[j - 1] <= 'Z') {
+                f = string[j - 1] - 'A';
+            } else {
+                f = string[j - 1] - 'a';
+            }
+
+            if (string[j] >= 'A' && string[j] <= 'Z') {
+                s = string[j] - 'A';
+            } else {
+                s = string[j] - 'a';
+            }
+
+            if (f > s){
+                swap(string[j - 1], string[j]);
+                sorted = false;
+            }
+        }
+
+        if (sorted) {
+            break;
+        }
+    }
 
     cout << "\nSorted:" << endl;
     for(int i = 0; i < 30; i++){
         cout << string[i];
     }
     cout << endl;
+    
     return;
 }
-
 
 
 int main() {
@@ -202,35 +226,3 @@ int main() {
     }
     return 0;
 }
-
-
-/*
-int main() {
-    cout << "Homework 3" << endl;
-
-    dict_fun_t dict = {
-        { 1, Number1 },
-        { 2, Number2 },
-    };
-
-
-    while (1) {
-        char s[100];
-        fgets(s, 100, stdin);
-        if (s[0] == '0') {
-            cout << "Ok, programm is finished." << endl;
-            break;
-        }
-
-        int n = atoi(s);
-
-        if (n && dict.count(n)) {
-            dict[n]();
-        } else {
-            cout << "Probably you entered an incorrect number. Try again!" << endl;
-        }
-    }
-
-    return 0;
-}
-*/
