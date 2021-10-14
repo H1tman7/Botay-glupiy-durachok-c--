@@ -92,7 +92,7 @@ void Number3() {
     cout << "Ok, I wrote down this information in the file. You can check this one!\n" << endl;
     fout.close();
 
-    ifstream fin("The File.txt");
+    ifstream fin("Task 3.3.txt");
     cout << "This is what contains in this file:" << endl;
     cout << "-----------------------------------------------------" << endl;
     char ch;
@@ -110,7 +110,7 @@ void Number3() {
 void Number4(){
     cout << "Number 4" << endl;
 
-    ifstream fin("Task 4.txt");
+    ifstream fin("Task 3.4.txt");
     char c;
     bool flag = false, sp = false;
 
