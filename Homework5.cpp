@@ -134,10 +134,11 @@ void Number2(){
             }
         }
     }
-    cout << "Count of Primes Numbers = " << count << endl;
+    cout << "Count of Prime Numbers = " << count << endl;
 
 
     cout << "\nUlam's spiral" << endl;
+    cout << "Check file 'Ulam.txt'" << endl;
 
 ////////////////////////////////////  
     //Initialize an array
@@ -198,7 +199,7 @@ void Number2(){
 ////////////////////////////////////
     //Printing finished matrix
 
-    // freopen("out.txt", "w", stdout);
+    ofstream fout("Ulam.txt");
     int k;
     if (n >= 1000)
         k = 4;
@@ -210,13 +211,13 @@ void Number2(){
     for(int i = 0; i < razm; i++){
         for (int j = 0; j < razm; j++){
             if (prime(matr[i][j]) && matr[i][j] <= n && matr[i][j] != 1){
-                cout << setw(k) << right << matr[i][j] << " ";
+                fout << setw(k) << right << matr[i][j] << " ";
             }
             else{
-                cout << setw(k+1) << right << "";
+                fout << setw(k+1) << right << "";
             }
         }
-        cout << endl;
+        fout << endl;
     }
 ////////////////////////////////////
 
@@ -229,7 +230,6 @@ void Number2(){
 
     delete[] matr;
 ///////////////////////////////////
-
 
     return;
 }
