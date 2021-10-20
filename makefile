@@ -10,10 +10,13 @@ Homework3:
 	g++ -std=c++17 -O3 Homework3.cpp -o Homework3
 	./Homework3
 
-Homework4:
-	g++ -std=c++17 -O3 Homework4Func.cpp Homework4.cpp -o Homework4 -lgdi32
+Homework4: sin
+	g++ -std=c++17 -O3 Homework4Func.cpp Homework4.cpp -o Homework4
 	./Homework4
 
 Homework5:
-	g++ -std=c++17 -03 Homework5.cpp -o Homework5
+	g++ -std=c++17 -O3 Homework5.cpp -o Homework5
 	./Homework5
+
+sin:
+	g++ -std=c++17 -O3 sin.cpp -o sin -lgdi32

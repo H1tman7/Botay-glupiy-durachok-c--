@@ -35,13 +35,13 @@ void sign(){
     cin >> x;
     cout << "Answer: ";
     if (x > 0){
-        cout << "1" << endl;
+        cout << "+" << endl;
     }
     else if (x == 0){
         cout << "0" << endl;
     }
     else
-        cout << "-1" << endl;
+        cout << "-" << endl;
     cout << endl;
     return;
 }
@@ -146,22 +146,36 @@ void Number4(){
 }
 
 void Number5(){
-    cout << "Number 5 " << endl;
-	// HWND hwnd = GetConsoleWindow();
-	// HPEN Pen = CreatePen(PS_SOLID, 2, RGB(255, 255, 255));
-	// HDC hdc = GetDC(hwnd);
-	// SelectObject(hdc, Pen);
-	// MoveToEx(hdc, 300, 0, NULL);
-	// LineTo(hdc, 300, 250);
-	// MoveToEx(hdc, 0, 125, NULL);
-	// LineTo(hdc, 1000, 125);
-	// for (double x = -10; x <= 20; x += 0.001) {
-	// 	MoveToEx(hdc, 50 * x + 300, -50 * sin(x) + 125, NULL);
-	// 	LineTo(hdc, 50 * x + 300, -50 * sin(x) + 125);
-	// }
-	// ReleaseDC(hwnd, hdc);
-	// std::cin.get();
+    cout << "Number 5" << endl;
+    system(".\\sin.exe");
+    return;
+}
+
+void Number6(){
+    cout << "Number 6" << endl;
 
     return;
 }
 
+// int generator(int m, int i, int c){
+
+//     return 0;
+// }
+
+void Number7(){
+    cout << "Number 7" << endl;
+
+    return;
+}
+
+void Number8(){
+    cout << "Number 8" << endl;
+
+    return;
+}
+
+void Number9(){
+    cout << "Number 9" << endl;
+
+    return;
+}

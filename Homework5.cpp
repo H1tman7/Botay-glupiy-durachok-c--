@@ -234,7 +234,6 @@ void Number2(){
     return;
 }
 
-
 int main() {
     cout << "Homework 5" << endl;
 

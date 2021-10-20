@@ -28,5 +28,13 @@ void Number4();
 
 void Number5();
 
+void Number6();
+
+void Number7();
+
+void Number8();
+
+void Number9();
+
 #endif //_HOMEWORK4_HPP
 

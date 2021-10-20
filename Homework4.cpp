@@ -37,6 +37,22 @@ int main() {
             Number5();
             break;
 
+        case 6:
+            Number6();
+            break;
+        
+        case 7:
+            Number7();
+            break;
+        
+        case 8:
+            Number8();
+            break;
+        
+        case 9:
+            Number9();
+            break;
+
         default:
             cout << "Probably you entered an incorrect number. Try again!" << endl;
             break;
