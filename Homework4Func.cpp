@@ -151,31 +151,202 @@ void Number5(){
     return;
 }
 
+
 void Number6(){
     cout << "Number 6" << endl;
 
+    // map <char,int>alph = {
+    //     { 'I', 1    },
+    //     { 'V', 5    },
+    //     { 'X', 10   },
+    //     { 'L', 50   },
+    //     { 'C', 100  },
+    //     { 'D', 500  },
+    //     { 'M', 1000 }
+    // };
+
+    // string num;
+    // bool flag = true, check = true;
+    // int count = 0, same = 1, sum = 0, temp = 0;
+    // cout << "Enter Number: ";
+    // cin >> num;
+    
+    // for (int i = num.length() - 1; i >= 0; i--){
+    //     int curr = alph[num[i]];
+
+    //     //для первого числа. присваиваем темповую переменную
+    //     if (temp == 0){ 
+    //         temp = curr;
+    //         sum = curr;
+    //     }
+
+
+
+    //     else if(curr > temp){
+    //         sum += curr;
+    //         flag = true;
+    //     }
+
+    //     else if (curr == temp && flag){
+    //         sum += curr;
+    //         same += 1;
+            
+    //         if (same > 3){
+    //             check = false;
+    //             break;
+    //         }
+    //     }
+
+    //     else if (curr < temp){
+    //         sum -= curr;
+    //         flag = false;
+
+    //     }
+
+    //     else{
+    //         check = false;
+    //         break;
+    //     }
+
+    //     temp = curr;
+
+    // }
+
+
+
+    // if (check){
+    //     cout << "sum = " << sum << endl;
+    // }
+    // else{
+    //     cout << "Input Error!" << endl;
+    // }
+
+    // cout << endl;
+    // Number6();
     return;
 }
 
-// int generator(int m, int i, int c){
-
-//     return 0;
-// }
-
 void Number7(){
     cout << "Number 7" << endl;
-
+    int v, s[32768];
+    unsigned long long m, i, c; 
+    srand(time(0));
+    s[0] = rand();
+    cout << "How large are the numbers?\n0 - small\n1 - big" << endl;
+    cin >> v;
+    
+    if (v == 0){
+        m = 37; i = 3; c = 64;
+        for (i = 0; i <= 3; i++)
+            s[i + 1] = (m * s[i] + i) % c;
+        cout << s[i] << endl;            
+    }
+    else if(v == 1){
+        m = 25173; i = 13849; c = 65537;
+        for (i = 0; i <= 13849; i++)
+            s[i + 1] = (m * s[i] + i) % c;
+        cout << s[i] << endl;
+    }
+    else
+        cout << "Input Error!" << endl;       
     return;
 }
 
 void Number8(){
     cout << "Number 8" << endl;
 
+    int A[3][4] = {5, 2, 0, 10, 3, 5, 2, 5, 20, 0, 0, 0};
+    float B[4][2] = {1.20, 0.50, 2.80, 0.40, 5.00, 1.00, 2.00, 1.50};
+
+    float c[3][2] = {'\0'};
+    float sum = 0;
+    int k = 0;
+
+    int x;
+    for(int k = 0; k < 2; k++){
+        x = 0;
+        for(int i = 0; i < 3; i++){
+            for(int j = 0; j < 4; j++){
+                sum += A[i][j] * B[j][k];
+            }
+            c[x][k] = sum;
+            x++;
+            sum = 0;
+        }
+    }
+    float total_profit = 0, total_fees = 0, total_money = 0;
+    float min_fee = 100, max_fee = 0;
+    int num_mxp,num_mnp,num_max_fee,num_min_fee;
+    float max_profit = 0, min_profit = 100;
+    for(int i = 0; i < 3; i++){
+        total_profit += c[i][0] - c[i][1];
+        total_fees += c[i][1];
+        total_money += c[i][0];
+        for (int j = 0; j < 2; j++){
+            cout << c[i][j] << " ";
+        }
+        if(c[i][0] - c[i][1] > max_profit){
+            max_profit = c[i][0] - c[i][1];
+            num_mxp = i + 1;
+        }
+        if(c[i][0] - c[i][1] < min_profit){
+            min_profit = c[i][0] - c[i][1];
+            num_mnp = i + 1;
+        }
+
+        if (c[i][1] > max_fee){
+            max_fee = c[i][1];
+            num_max_fee = i + 1;
+        }
+
+        if (c[i][1] < min_fee){
+            min_fee = c[i][1];
+            num_min_fee = i + 1;
+        }
+        cout << endl;
+    }
+
+    cout << "1)Profit\nMax - " << num_mxp << "\tMin - " << num_mnp << endl;
+    cout << "2)Fees:\nMax - " << num_max_fee << "\tMin - " << num_min_fee << endl;
+    cout << "3)Total profit = " << total_profit << endl;
+    cout << "4)Total fees = " << total_fees << endl;
+    cout << "5)Total money = " << total_money << endl;
     return;
 }
 
 void Number9(){
     cout << "Number 9" << endl;
+
+    string x;
+    char ans[30];
+    int tenth = 0;
+    int old_base, new_base;
+    cout << "Enter your number: ";
+    cin >> x;
+    cout << "Enter old base: ";
+    cin >> old_base;
+    cout << "Enter new base: ";
+    cin >> new_base;
+
+
+    if (old_base != 10){
+        for(int i = 0; i < x.length(); i++){
+            if(x[i] > '9'){
+                tenth += (x[i] - '7') * pow(old_base, x.length() - i - 1);
+            }
+            else{
+                tenth += (x[i] - '0') * pow(old_base, x.length() - i - 1);
+            }
+        }
+    }
+    // if (new_base == 10){
+    //     cout << tenth << endl;
+    // }
+    // else{
+    //     itoa(tenth,ans,new_base);
+    //     cout << ans << endl;
+    // }
+
 
     return;
 }

@@ -7,6 +7,9 @@
 #include <string>
 #include <iomanip>
 #include <windows.h>
+#include <ctime>
+#include <cstdlib>
+#include <map>
 
 using namespace std;
 
