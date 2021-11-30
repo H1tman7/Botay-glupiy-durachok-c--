@@ -20,3 +20,7 @@ Homework5:
 
 sin:
 	g++ -std=c++17 -O3 sin.cpp -o sin -lgdi32
+
+spinners:
+	g++ -std=c++17 -O3 spinners.cpp -o spinners
+	./spinners
