@@ -29,10 +29,7 @@ void Number1(){
     return;
 }
 
-void sign(){
-    float x;
-    cout << "Enter x: ";
-    cin >> x;
+void sign(float x){
     cout << "Answer: ";
     if (x > 0){
         cout << "+" << endl;
@@ -48,7 +45,10 @@ void sign(){
 
 void Number2(){
     cout << "Number 2" << endl;
-    sign();
+    float x;
+    cout << "Enter x: ";
+    cin >> x;
+    sign(x);
     return;
 }
 
@@ -72,18 +72,34 @@ void rectangle(){
 
 void triangle(){
     cout << "Triangle" << endl;
+    int x;
+    cout << "0 - three sides; 1 - height: ";
+    cin >> x;
 
-    float h, a;
-    cout << "Enter h: ";
-    cin >> h;
-    cout << "Enter a: ";
-    cin >> a;
+    if (x == 1){
+        float h, a;
+        cout << "Enter h: ";
+        cin >> h;
+        cout << "Enter a: ";
+        cin >> a;
 
-    if (h <= 0 || a <= 0 ){
-        cout << "Input Error" << endl;
-        return;
+        if (h <= 0 || a <= 0 )
+            cout << "Input Error" << endl;
+        else
+            cout << "S = " << 0.5 * h * a << endl;
     }
-    cout << "S = " << 0.5 * h * a << endl;
+
+    else{
+        float a,b,c;
+        cout << "Enter sides: ";
+        cin >> a >> b >> c;
+        if(a < b + c && b < a + c && c < a + b && a > 0 && b > 0 && c > 0){
+            float p = (a + b + c) / 2;
+            cout << "S = " << pow((p * (p-a) * (p-b) * (p-c)), 0.5) << endl;
+        }
+        else
+            cout << "Input Error!" << endl;
+    }
 
     return;
 }
@@ -151,9 +167,8 @@ void Number5(){
     return;
 }
 
-
 void Number6(){
-    cout << "Number 6" << endl;
+    // cout << "Number 6" << endl;
 
     // map <char,int>alph = {
     //     { 'I', 1    },
@@ -179,37 +194,24 @@ void Number6(){
     //         temp = curr;
     //         sum = curr;
     //     }
-
-
-
+        
     //     else if(curr > temp){
     //         sum += curr;
-    //         flag = true;
+            
     //     }
 
-    //     else if (curr == temp && flag){
+    //     else if (curr == temp){
     //         sum += curr;
-    //         same += 1;
-            
-    //         if (same > 3){
-    //             check = false;
-    //             break;
-    //         }
+
     //     }
 
     //     else if (curr < temp){
+    //         // if()
     //         sum -= curr;
-    //         flag = false;
 
-    //     }
-
-    //     else{
-    //         check = false;
-    //         break;
     //     }
 
     //     temp = curr;
-
     // }
 
 
@@ -223,7 +225,7 @@ void Number6(){
 
     // cout << endl;
     // Number6();
-    return;
+    // return;
 }
 
 void Number7(){
@@ -318,7 +320,7 @@ void Number9(){
     cout << "Number 9" << endl;
 
     string x;
-    char ans[30];
+    int ans[30];
     int tenth = 0;
     int old_base, new_base;
     cout << "Enter your number: ";
@@ -328,25 +330,61 @@ void Number9(){
     cout << "Enter new base: ";
     cin >> new_base;
 
-
-    if (old_base != 10){
+    if (new_base > 16 || new_base < 2 || old_base < 2 || old_base > 16){
+        cout << "Input Error!" << endl;
+    }
+    else{
         for(int i = 0; i < x.length(); i++){
             if(x[i] > '9'){
+                if (x[i] - '7' >= old_base){
+                    cout << "Input Error!" << endl;
+                    return;
+                }
                 tenth += (x[i] - '7') * pow(old_base, x.length() - i - 1);
             }
             else{
+                if (x[i] - '0' >= old_base){
+                    cout << "Input Error!" << endl;
+                    return;
+                }
                 tenth += (x[i] - '0') * pow(old_base, x.length() - i - 1);
             }
         }
+        if (new_base == 10){
+            cout << tenth << endl;
+        }
+        
+        else{
+            char buffer[1];
+            int i = 1;
+            while(tenth > 0){
+                ans[i] = tenth % new_base;
+                tenth /= new_base;
+                i++;
+            }
+            i--;
+
+            while (i > 0){
+                if (ans[i] == 10 && ans[i] < new_base)
+                    cout << "A";
+                else if (ans[i] == 11 && ans[i] < new_base)
+                    cout << "B";
+                else if (ans[i] == 12 && ans[i] < new_base)
+                    cout << "C";
+                else if (ans[i] == 13 && ans[i] < new_base)
+                    cout << "D";
+                else if (ans[i] == 14 && ans[i] < new_base)
+                    cout << "E";
+                else if (ans[i] == 15 && ans[i] < new_base)
+                    cout << "F";
+                else if (ans[i] < new_base)
+                    cout << ans[i];
+                else
+                    cout << "Input Error!" << endl;
+                i--;    
+            }
+            cout << endl;
+        }
     }
-    // if (new_base == 10){
-    //     cout << tenth << endl;
-    // }
-    // else{
-    //     itoa(tenth,ans,new_base);
-    //     cout << ans << endl;
-    // }
-
-
     return;
 }
