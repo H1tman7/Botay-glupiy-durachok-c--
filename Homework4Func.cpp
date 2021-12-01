@@ -168,64 +168,92 @@ void Number5(){
 }
 
 void Number6(){
-    // cout << "Number 6" << endl;
+    cout << "Number 6" << endl;
 
-    // map <char,int>alph = {
-    //     { 'I', 1    },
-    //     { 'V', 5    },
-    //     { 'X', 10   },
-    //     { 'L', 50   },
-    //     { 'C', 100  },
-    //     { 'D', 500  },
-    //     { 'M', 1000 }
-    // };
+    map <char,int>alph = {
+        { 'I', 1    },
+        { 'V', 5    },
+        { 'X', 10   },
+        { 'L', 50   },
+        { 'C', 100  },
+        { 'D', 500  },
+        { 'M', 1000 }
+    };
 
-    // string num;
-    // bool flag = true, check = true;
-    // int count = 0, same = 1, sum = 0, temp = 0;
-    // cout << "Enter Number: ";
-    // cin >> num;
+    string num;
+    bool flag = true, check = true; //flag отвечает за то, чтобы после 'уменьшения' символа следом обязательно шло увеление значения символа. check - всяческие другие ошибки
+    int same = 1, sum = 0, temp = 0, c5 = 0, c50 = 0, c500 = 0;
+    cout << "Enter Number: ";
+    cin >> num;
     
-    // for (int i = num.length() - 1; i >= 0; i--){
-    //     int curr = alph[num[i]];
+    for (int i = num.length() - 1; i >= 0; i--){
+        int curr = alph[num[i]];
 
-    //     //для первого числа. присваиваем темповую переменную
-    //     if (temp == 0){ 
-    //         temp = curr;
-    //         sum = curr;
-    //     }
+        if (curr == 5){
+            c5++;
+        }
+        if (curr == 50){
+            c50++;
+        }
+        if (curr == 500){
+            c500++;
+        }
+
+        if(c5 > 1 || c50 > 1 || c500 > 1){ //больше 1 '5', '50', '500' - ошибка
+            check = false;
+            break;
+        }
+        //для первого числа. присваиваем темповую переменную
+        if (temp == 0){ 
+            temp = curr;
+            sum = curr;
+        }
         
-    //     else if(curr > temp){
-    //         sum += curr;
-            
-    //     }
+        else if(curr > temp){
+            sum += curr;
+            same = 1;
+            flag = true;
+        }
 
-    //     else if (curr == temp){
-    //         sum += curr;
+        else if(!flag){
+            check = false;
+            break;
+        }
 
-    //     }
+        else if (curr == temp && flag){
+            sum += curr;
+            same++;
 
-    //     else if (curr < temp){
-    //         // if()
-    //         sum -= curr;
+        }
 
-    //     }
+        else if (curr < temp){
+            if ((abs(log10(curr) - log10(temp)) > 1) || curr == 5 || curr == 50 || curr == 500){
+                check = false;
+                break;
+            }
+            flag = false;
+            sum -= curr;
+            same = 1;
+        }
 
-    //     temp = curr;
-    // }
+        if(same > 3){ //больше трех подряд идущих одинаковых символов - ошибка
+            check = false;
+            break;
+        }
 
+        temp = curr;
+    }
 
+    if (check){
+        cout << "sum = " << sum << endl;
+    }
+    else{
+        cout << "Input Error!" << endl;
+    }
 
-    // if (check){
-    //     cout << "sum = " << sum << endl;
-    // }
-    // else{
-    //     cout << "Input Error!" << endl;
-    // }
-
-    // cout << endl;
-    // Number6();
-    // return;
+    cout << endl;
+    Number6();
+    return;
 }
 
 void Number7(){
