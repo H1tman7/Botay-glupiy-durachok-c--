@@ -182,12 +182,17 @@ void Number6(){
 
     string num;
     bool flag = true, check = true; //flag отвечает за то, чтобы после 'уменьшения' символа следом обязательно шло увеление значения символа. check - всяческие другие ошибки
-    int same = 1, sum = 0, temp = 0, c5 = 0, c50 = 0, c500 = 0;
+    int same = 1, sum = 0, temp = 0, temp2 = 0, c5 = 0, c50 = 0, c500 = 0;
     cout << "Enter Number: ";
     cin >> num;
     
     for (int i = num.length() - 1; i >= 0; i--){
         int curr = alph[num[i]];
+
+        if(curr == 0){
+            check = false;
+            break;
+        }
 
         if (curr == 5){
             c5++;
@@ -213,6 +218,10 @@ void Number6(){
             sum += curr;
             same = 1;
             flag = true;
+            if (curr == temp2){
+                check = false;
+                break;
+            }
         }
 
         else if(!flag){
@@ -231,6 +240,10 @@ void Number6(){
                 check = false;
                 break;
             }
+            if (curr == temp2){
+                check = false;
+                break;
+            }
             flag = false;
             sum -= curr;
             same = 1;
@@ -241,6 +254,7 @@ void Number6(){
             break;
         }
 
+        temp2 = temp;
         temp = curr;
     }
 
