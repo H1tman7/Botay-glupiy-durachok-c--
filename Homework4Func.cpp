@@ -212,6 +212,7 @@ void Number6(){
         if (temp == 0){ 
             temp = curr;
             sum = curr;
+			continue;
         }
         
         else if(curr > temp){
@@ -236,7 +237,7 @@ void Number6(){
                 check = false;
                 break;
             }
-            if (curr == temp2){
+            if (curr == temp2 || temp == temp2){
                 check = false;
                 break;
             }
