@@ -218,10 +218,6 @@ void Number6(){
             sum += curr;
             same = 1;
             flag = true;
-            if (curr == temp2){
-                check = false;
-                break;
-            }
         }
 
         else if(!flag){
