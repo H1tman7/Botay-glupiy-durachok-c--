@@ -4,6 +4,7 @@
 #include <string>
 #include <stdbool.h>
 #include <iomanip>
+#include <cstdlib>
 
 using namespace std;
 
@@ -234,6 +235,44 @@ void Number2(){
     return;
 }
 
+void Number3(){
+    cout << "Text files.Number 26." << endl;
+
+    FILE* f = fopen("Files.Number26.txt", "r");
+
+    fseek(f, 0, SEEK_END);
+    int count = 0;
+    unsigned long long size = ftell(f);
+    fseek(f, 0, SEEK_SET);
+
+    char buf[1000000];
+    fread(buf, size, size, f);
+    fclose(f);
+    for(int i = 0; i < size; i++){
+        if (buf[i] == '\n')
+            count++;
+    }
+
+    char from,into;
+    cout << "What is the cymbol you want to replace? ";
+    cin >> from;
+    cout << "What is the cymbol you want to replace it with? ";
+    cin >> into;
+
+    FILE* out = fopen("Files.Number26.txt", "w");
+
+    for(int i = 0; i < size - count; i++){
+        if (buf[i] == from)
+            fputc(into, out);    
+        else
+            fputc(buf[i], out);
+    }
+
+    fclose(out);
+    return;
+}
+
+
 int main() {
     cout << "Homework 5" << endl;
 
@@ -252,9 +291,9 @@ int main() {
             Number2();
             break;
 
-        // case 3:
-        //     Number3();
-        //     break;
+        case 3:
+            Number3();
+            break;
 
         // case 4:
         //     Number4();
