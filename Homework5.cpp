@@ -244,10 +244,11 @@ void Number3(){
     int count = 0;
     unsigned long long size = ftell(f);
     fseek(f, 0, SEEK_SET);
-
-    char buf[1000000];
-    fread(buf, size, size, f);
+    char* data = (char*) malloc(size);
+    char buf[size];
+    fread(buf, 1, size, f);
     fclose(f);
+
     for(int i = 0; i < size; i++){
         if (buf[i] == '\n')
             count++;
