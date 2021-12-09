@@ -7,6 +7,7 @@
 #include <cstdlib>
 #include <conio.h>
 #include <string.h>
+#include <set>
 
 using namespace std;
 
@@ -276,32 +277,15 @@ void Number3(){
 }
 
 void Number4(){
-    cout << "Text files.Number 15" << endl;
+    cout << "Text files.Number 14" << endl;
 
-    FILE* f = fopen("Files.Number15.txt", "r");
-    
-    char word[1000] = { '\0' };
-    printf("Enter a word: "); 
-    cin >> word;
- 
-    fseek(f, 0, SEEK_END);
-    int size = ftell(f);
-    fseek(f, 0, SEEK_SET);
- 
-    int i = 0;
-    char c = '\0';
-    char* buf = new char[size + 1];
-    while ((c = fgetc(f)) != EOF)
-          buf[i++] = c;
- 
-    fclose(f);
+    FILE* out = fopen("Files.Number14.txt", "a");
+    char c;
+    while((c = getchar()) != EOF){
+        fputc(c, out);    
+    }
 
-    const char* w = NULL;
-    if ((w = strstr(buf, word)) != NULL)
-        cout << "Yes, there is the word in this file" << endl;
-    else 
-        cout <<"No, word \"" << word << "\"" << " not found" << endl;
-
+    fclose(out);
     return;
 }
 
@@ -349,12 +333,45 @@ void Number5(){
 }
 
 void Number6(){
-    cout << "Ryadi.Number43" << endl;
+    cout << "Rows.Number42" << endl;
     
+
 
 
     return;
 }
+
+void extra(){
+    cout << "Text files.Number 15(not mine)" << endl;
+
+    FILE* f = fopen("Files.Number15.txt", "r");
+    
+    char word[1000] = { '\0' };
+    printf("Enter a word: "); 
+    cin >> word;
+ 
+    fseek(f, 0, SEEK_END);
+    int size = ftell(f);
+    fseek(f, 0, SEEK_SET);
+ 
+    int i = 0;
+    char c = '\0';
+    char* buf = new char[size + 1];
+    while ((c = fgetc(f)) != EOF)
+          buf[i++] = c;
+ 
+    fclose(f);
+
+    const char* w = NULL;
+    if ((w = strstr(buf, word)) != NULL)
+        cout << "Yes, there is the word in this file" << endl;
+    else 
+        cout <<"No, word \"" << word << "\"" << " not found" << endl;
+
+    return;
+}
+
+
 
 int main() {
     cout << "Homework 5" << endl;
@@ -388,6 +405,10 @@ int main() {
 
         case 6:
             Number6();
+            break;
+
+        case 100:
+            extra();
             break;
 
         default:
