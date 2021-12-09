@@ -214,13 +214,18 @@ void Number6(){
             sum = curr;
 			continue;
         }
-        
+
+        if(curr < temp2 && temp2 != 0){
+            check = false;
+            break;
+        }
+
         else if(curr > temp){
             sum += curr;
             same = 1;
             flag = true;
         }
-
+        
         else if(!flag){
             check = false;
             break;

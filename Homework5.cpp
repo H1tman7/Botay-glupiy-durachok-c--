@@ -5,6 +5,8 @@
 #include <stdbool.h>
 #include <iomanip>
 #include <cstdlib>
+#include <conio.h>
+#include <string.h>
 
 using namespace std;
 
@@ -236,7 +238,7 @@ void Number2(){
 }
 
 void Number3(){
-    cout << "Text files.Number 26." << endl;
+    cout << "Text files.Number 26" << endl;
 
     FILE* f = fopen("Files.Number26.txt", "r");
 
@@ -273,6 +275,86 @@ void Number3(){
     return;
 }
 
+void Number4(){
+    cout << "Text files.Number 15" << endl;
+
+    FILE* f = fopen("Files.Number15.txt", "r");
+    
+    char word[1000] = { '\0' };
+    printf("Enter a word: "); 
+    cin >> word;
+ 
+    fseek(f, 0, SEEK_END);
+    int size = ftell(f);
+    fseek(f, 0, SEEK_SET);
+ 
+    int i = 0;
+    char c = '\0';
+    char* buf = new char[size + 1];
+    while ((c = fgetc(f)) != EOF)
+          buf[i++] = c;
+ 
+    fclose(f);
+
+    const char* w = NULL;
+    if ((w = strstr(buf, word)) != NULL)
+        cout << "Yes, there is the word in this file" << endl;
+    else 
+        cout <<"No, word \"" << word << "\"" << " not found" << endl;
+
+    return;
+}
+
+void Number5(){
+    string s;
+    cout << "Enter string: ";
+    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    getline(cin, s);
+    int n = s.length(), spaces = 0, PoS = 0;
+    bool fl = false;
+
+    for(int i = spaces; i < 3; i++){
+        while(s[PoS] == ' '){
+            PoS++;
+        }
+
+        while(s[PoS] != ' '){
+            if(PoS < n)
+                PoS++;
+            else
+                break;
+        }
+    }
+    if (s[PoS] == ' '){
+        PoS--;
+        fl = true;   
+    }
+
+    int i = -1;
+    char ToReverse[n-4] = { '\0' };
+    while(s[PoS] != ' '){
+        if(fl){
+            ToReverse[++i] = s[PoS];
+            PoS--;    
+        }
+        else
+            ToReverse[++i] = s[--PoS];
+    }
+
+    for(int b = 0; b <= i; b++){
+        cout << ToReverse[b];
+    }
+    cout << endl;
+    return;
+}
+
+void Number6(){
+    cout << "Ryadi.Number43" << endl;
+    
+
+
+    return;
+}
 
 int main() {
     cout << "Homework 5" << endl;
@@ -296,13 +378,17 @@ int main() {
             Number3();
             break;
 
-        // case 4:
-        //     Number4();
-        //     break;
+        case 4:
+            Number4();
+            break;
 
-        // case 5:
-        //     Number5();
-        //     break;
+        case 5:
+            Number5();
+            break;
+
+        case 6:
+            Number6();
+            break;
 
         default:
             cout << "Probably you entered an incorrect number. Try again!" << endl;
