@@ -8,6 +8,8 @@
 #include <conio.h>
 #include <string.h>
 #include <set>
+#include <map>
+#include <iterator>
 
 using namespace std;
 
@@ -290,14 +292,17 @@ void Number4(){
 }
 
 void Number5(){
+    cout << "Rows.Number26(The third word)" << endl; 
     string s;
     cout << "Enter string: ";
     cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     getline(cin, s);
-    int n = s.length(), spaces = 0, PoS = 0;
+    int n = s.length(), PoS = 0, count = 0;
     bool fl = false;
-
-    for(int i = spaces; i < 3; i++){
+    
+    if (s[n] != ' ')
+        count++;
+    for(int i = 0; i < 3; i++){
         while(s[PoS] == ' '){
             PoS++;
         }
@@ -308,35 +313,96 @@ void Number5(){
             else
                 break;
         }
-    }
-    if (s[PoS] == ' '){
-        PoS--;
-        fl = true;   
+        if(s[PoS] == ' ')
+            count++;
     }
 
-    int i = -1;
-    char ToReverse[n-4] = { '\0' };
-    while(s[PoS] != ' '){
-        if(fl){
-            ToReverse[++i] = s[PoS];
-            PoS--;    
+    if(count < 3){
+        cout << "Input Error!" << endl;
+    }
+    else{
+        if (s[PoS] == ' '){
+            PoS--;
+            fl = true;   
         }
-        else
-            ToReverse[++i] = s[--PoS];
-    }
 
-    for(int b = 0; b <= i; b++){
-        cout << ToReverse[b];
+        int i = -1;
+        char ToReverse[n-4] = { '\0' };
+        while(s[PoS] != ' '){
+            if(fl){
+                ToReverse[++i] = s[PoS];
+                PoS--;    
+            }
+            else
+                ToReverse[++i] = s[--PoS];
+        }
+
+        for(int b = 0; b <= i; b++){
+            cout << ToReverse[b];
+        }
+        cout << endl;
     }
-    cout << endl;
     return;
 }
 
 void Number6(){
-    cout << "Rows.Number42" << endl;
+    cout << "Rows.Number42(the same numbers)" << endl;
+            
+    set <int> first;
+    set <int> final;
+    map <int, int> slovarik;
+    bool flag = false;
+    int nums[10000] = { '\0' }, i = 0;
     
+    cout << "Enter your numbers" << endl;
+    cout << "0) ";
+    while (cin >> nums[i++]){
+        cout << i << ") ";
+    }
+    --i;
+
+    for(int j = 0; j < i; j++){
+        first.insert(nums[j]);
+    }
+
+    for(int j = 0; j < i; j++){
+        ++slovarik[nums[j]];
+    }
+    cout << endl;
+
+    map <int, int> :: iterator sl_it = slovarik.begin();
+    for(int k = 0; sl_it != slovarik.end(); sl_it++, k++){
+        if(sl_it->second > 1){
+            cout << "count of '" << sl_it->first << "' = " << sl_it->second << ". Their indexes: ";
+            flag = true;
+            final.insert(sl_it->first);
+            for(int a = 0; a < i; a++){
+                if(sl_it->first == nums[a]){
+                    cout << a << " ";
+                }
+            }
+            cout << endl;
+        }
+    }
+    if(flag){
+        cout << "sorted array: " << endl;
+        copy(final.begin(), final.end(), ostream_iterator<int>(cout, " "));
+    }
+    else
+        cout << "There is no repeated items";
+    cout << endl;
+    return;
+}
+
+void Number7(){
+
+    
+    return;
+}
 
 
+
+void balls(){
 
     return;
 }
@@ -371,12 +437,12 @@ void extra(){
     return;
 }
 
-
-
 int main() {
     cout << "Homework 5" << endl;
 
     while (true) {
+        cin.clear();
+        fflush(stdin);
         end();
         switch (num_task) {
         case 0:
@@ -407,6 +473,14 @@ int main() {
             Number6();
             break;
 
+        case 7:
+            Number7();
+            break;
+
+        case 10:
+            balls();
+            break;
+        
         case 100:
             extra();
             break;
