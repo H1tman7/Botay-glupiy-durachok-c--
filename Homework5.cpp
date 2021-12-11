@@ -396,11 +396,56 @@ void Number6(){
 
 void Number7(){
 
-    
+
     return;
 }
 
 
+
+int is_prime(int i){
+    for(int k = 2; k < pow(i, 0.5) + 1; k++){
+        if(i % k == 0 && i != k){
+            return 0;
+            break;
+        }
+    }
+    return 1;
+}
+
+void Number9(){
+    cout << "Sophie Germain Primes" << endl;
+
+    float m,n;
+    cout << "Enter M and N" << endl;
+    cin >> m >> n;
+    if (n < 0 && m < 0){
+        cout << "Input Error" << endl;
+        return;
+    }
+    else if (n < m){
+        int temp = m;
+        m = n;
+        n = temp;
+    }
+
+    long long a,b;
+    a = m < 2 ? 2 : ceil(m); b = floor(n);
+
+    cout << "Numbers: " << endl;
+
+    for(int i = a; a < b; i++){
+        if(i > b){
+            break;
+        }
+        else if(is_prime(i)){
+            if(is_prime(2 * i + 1)){
+                cout << i << " ";
+            }
+        }
+    }
+    cout << endl;
+    return;
+}
 
 void balls(){
 
@@ -475,6 +520,10 @@ int main() {
 
         case 7:
             Number7();
+            break;
+
+        case 9:
+            Number9();
             break;
 
         case 10:
