@@ -395,12 +395,18 @@ void Number6(){
 }
 
 void Number7(){
+    cout << "Files.Number26" << endl;
+
 
 
     return;
 }
 
+void Number8(){
+    cout << "Files.Number5" << endl;
 
+    return;
+}
 
 int is_prime(int i){
     for(int k = 2; k < pow(i, 0.5) + 1; k++){
@@ -433,7 +439,7 @@ void Number9(){
 
     cout << "Numbers: " << endl;
 
-    for(int i = a; a < b; i++){
+    for(int i = a; a <= b; i++){
         if(i > b){
             break;
         }
@@ -448,6 +454,8 @@ void Number9(){
 }
 
 void balls(){
+    cout << "Balls" << endl;
+
 
     return;
 }
@@ -520,6 +528,10 @@ int main() {
 
         case 7:
             Number7();
+            break;
+        
+        case 8:
+            Number8();
             break;
 
         case 9:
