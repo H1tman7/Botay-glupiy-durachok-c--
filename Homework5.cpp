@@ -10,6 +10,7 @@
 #include <set>
 #include <map>
 #include <iterator>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -397,7 +398,119 @@ void Number6(){
 void Number7(){
     cout << "Files.Number26" << endl;
 
+    cout << "Enter count of students: ";
+    int students;
+    float avg;
+    cin >> students;
 
+    if(students < 1){
+        cout << "Input Error!" << endl;
+        return;
+    }
+    string number, name;
+
+    string** data = new string* [students];
+    for(int i = 0; i < students; i++){
+        data[i] = new string[8];
+    }
+
+    map <char, int> mp = {
+        { 'A',  5  },
+        { 'B',  4  },
+        { 'C',  3  },
+        { 'D',  2  },
+        { 'F',  1  },
+        { '5',  5  },
+        { '4',  4  },
+        { '3',  3  },
+        { '2',  2  },
+        { '1',  1  },
+        { '0',  0  }
+    };
+
+    ofstream fout("Students(26).txt");
+    fout << "Number of record book\tStudent's name\t\t\t\t\t\t1\t2\t3\t4\t5\tAvg\n\n";
+    for(int i = 0; i < students; i++){
+        avg = 0;
+        for(int j = 0; j < 7; j++){
+            if (!j){
+                cout << "Enter number of " << i + 1<< " record book: ";
+                cin >> data[i][j];
+                data[i][j] = data[i][j].substr(0, 18);
+                fout << data[i][j];
+                for(int k = data[i][j].length(); k < 24; k++){
+                    fout << " ";
+                }
+            }
+            else if(j == 1){
+                cout << "Enter Student's name: ";
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                getline(cin, data[i][j]);
+                data[i][j] = data[i][j].substr(0, 34);
+                fout << data[i][j];
+                for(int k = data[i][j].length(); k < 36; k++){
+                    fout << " ";
+                }
+            }
+            else{
+                cout << "Enter " << j - 1 << " grade: ";
+                cin >> data[i][j];
+                fout << data[i][j] << " \t";
+                avg += atoi(data[i][j].c_str());
+            }
+        }
+        data[i][7] = to_string(avg / 5);
+        fout << setprecision(3) << avg / 5 << endl;
+    }
+    
+
+    string temp;
+    for (int i = 0; i < students - 1; i++){ 
+        for (int j = i + 1; j < students; j++){
+            if (data[i][7] < data[j][7]){
+                for (int k = 0; k < 8; ++k){
+                    temp = data[j][k];
+                    data[j][k] = data[i][k];
+                    data[i][k] = temp;
+                }
+            }
+        }
+	}
+    fout.close();
+    fout.open("Students(26).txt");
+    fout << "Number of record book\tStudent's name\t\t\t\t\t\t1\t2\t3\t4\t5\tAvg\n\n";
+    for(int i = 0; i < students; i++){
+        for(int j = 0; j < 8; j++){
+            if( j < 7 ){
+                fout << data[i][j];
+                if (!j){
+                    for(int k = data[i][j].length(); k < 24; k++){
+                        fout << " ";
+                    }
+                }
+                else if(j == 1){
+                    for(int k = data[i][j].length(); k < 36; k++){
+                        fout << " ";
+                    }
+                }
+                else{
+                    fout << " \t";
+                }
+            }
+            else{
+                avg = atof(data[i][j].c_str()) ;
+                fout << setprecision(3) << avg;
+            }
+        }
+        fout << endl;
+    }
+
+    fout.close();
+
+    for (int i = 0; i < students; i++) {
+        delete[] data[i];
+    }
+	delete[] data;
 
     return;
 }
