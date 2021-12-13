@@ -409,7 +409,7 @@ void Number7(){
     }
     string number, name;
 
-    string** data = new string* [students];
+    string **data = new string *[students];
     for(int i = 0; i < students; i++){
         data[i] = new string[8];
     }
@@ -517,6 +517,58 @@ void Number7(){
 
 void Number8(){
     cout << "Files.Number5" << endl;
+    ifstream fin("Matrices(5).txt");
+
+    int m, n, min, ans, ans1, ans2;
+    bool flag, done;
+
+    for(int number = 0; number < 5; number++){
+        fin >> m >> n;
+        // cout << "m = " << m << " n = " << n << endl;
+        if(m < 1 || n < 1){
+            cout << "Input Error" << endl;
+            continue;
+        }
+        else{
+            done = false;
+            //инициализация массива
+            int **matrix = new int *[m];
+            for(int i = 0; i < m; i++){
+                matrix[i] = new int[n];
+            }
+            //заполнение массива элементами из файла
+            for(int i = 0; i < m; i++){
+                for(int j = 0; j < n; j++)
+                    fin >> matrix[i][j];
+            }
+            //основной цикл по нахождению ответа
+            for(int i = 0; i < m; i++){  // цикл по строкам
+                min = matrix[i][0];
+                flag = true;
+                for(int j = 0; j < n; j++){ // цикл по столбцам
+                    if(matrix[i][j] <= min){ // поиск минимума во всей строке
+                        min = matrix[i][j];
+                        ans1 = i;           //индекс строки
+                        ans2 = j;           //индекс столбца
+                    }
+                }
+                for(int a = 0; a < m; a++){
+                    if (matrix[a][ans2] > min){
+                        flag = false;
+                        break;
+                    }
+                }
+                if(flag){
+                    cout << number + 1 << ") Answer: (" << ans1 << ";"<< ans2 << ")\t Value = " << min << endl;
+                    done = true;
+                    break;
+                }
+            }
+            if(!done){
+                cout << number + 1 << ") There is no such items" << endl;
+            }
+        }
+    }
 
     return;
 }
