@@ -522,6 +522,7 @@ void Number8(){
     int m, n, min, ans, ans1, ans2;
     bool flag, done;
 
+    
     for(int number = 0; number < 5; number++){
         fin >> m >> n;
         if(m < 1 || n < 1){
@@ -558,14 +559,21 @@ void Number8(){
                     }
                 }
                 if(flag){
-                    cout << number + 1 << ") Answer: (" << ans1 << ";"<< ans2 << ")\t Value = " << min << endl;
                     done = true;
                     break;
                 }
             }
-            if(!done){
+
+            if(done)
+                cout << number + 1 << ") Answer: (" << ans1 << ";"<< ans2 << ")    Value = " << min << endl;
+            else
                 cout << number + 1 << ") There is no such items" << endl;
+            
+            for (int i = 0; i < m; i++){
+                delete[] matrix[i];
             }
+            delete[] matrix;
+
         }
     }
 
