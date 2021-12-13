@@ -524,7 +524,6 @@ void Number8(){
 
     for(int number = 0; number < 5; number++){
         fin >> m >> n;
-        // cout << "m = " << m << " n = " << n << endl;
         if(m < 1 || n < 1){
             cout << "Input Error" << endl;
             continue;
