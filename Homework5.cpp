@@ -625,6 +625,28 @@ void Number9(){
     return;
 }
 
+unsigned int fibo(int k){
+    if(k == 0)
+        return 0;
+    else if(k == 1)
+        return 1;
+    return fibo(k - 1) + fibo(k - 2);
+}
+
+void Number11(){
+    cout << "Fibonacci Numbers" << endl;
+    int k;
+    cout << "Enter k: "; 
+    cin >> k;
+    
+    if(k > 0)
+        cout << fibo(k-1) << endl;
+    else
+        cout << "Input Error" << endl;
+
+    return;
+}
+
 int res = 0;
 void Swap(int a, int b, int arr []){
     int t = arr[a];
@@ -750,6 +772,10 @@ int main() {
         case 10:
             balls();
             return 0;
+        
+        case 11:
+            Number11();
+            break;
         
         case 100:
             extra();
