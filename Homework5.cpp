@@ -526,8 +526,8 @@ void Number8(){
     for(int number = 0; number < 5; number++){
         fin >> m >> n;
         if(m < 1 || n < 1){
-            cout << "Input Error" << endl;
-            continue;
+            cout << number + 1 << ") Input Error" << endl;
+            break;
         }
         else{
             done = false;
@@ -625,9 +625,47 @@ void Number9(){
     return;
 }
 
+int res = 0;
+void Swap(int a, int b, int arr []){
+    int t = arr[a];
+    arr[a] = arr[b];
+    arr[b] = t;
+}
+
+void PosChange(int k, int N, int arr[]){ //k - номер последнего элемента
+    if (k == N){                         //погружение глубже в рекурсию
+        bool b = false;                  // покажет, было ли совпадение номера и порядка 
+        for (int i = 0; i < N; i++){
+            if (arr[i] == i + 1){ 
+                b = true; 
+            }
+        }
+        if (b){
+            res += 1;
+        }
+    }
+
+    else{
+        for (int i = k; i < N; i++){ //начиная с конца, цикл будет делать перестановки.
+            Swap(k, i, arr);
+            PosChange(k + 1, N, arr); //идем в рекурсии до последнего элемента массива
+            Swap(k, i, arr);
+        }
+    }
+}
+
 void balls(){
     cout << "Balls" << endl;
 
+    int n;
+    cout << "Enter count: ";
+    cin >> n;
+    int *arr = new int[n];
+    for (int i = 0; i < n; i++)
+        arr[i] = i + 1;
+    PosChange(0, n, arr);
+    cout << "Answer: " << res << endl;
+    delete[] arr;
 
     return;
 }
@@ -712,7 +750,7 @@ int main() {
 
         case 10:
             balls();
-            break;
+            return 0;
         
         case 100:
             extra();
