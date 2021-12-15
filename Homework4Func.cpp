@@ -149,12 +149,19 @@ void Number3(){
 void Number4(){
     cout << "Number 4\n" << endl;
 
-    int i, k;
-    for (i = 1; i <= 6; i++){
-        cout << "* * * * * * * *" << setfill('=') << setw(32) << "=" << endl;
-    }
-    for (k = 1; k <= 7; k++){
-        cout << setfill('=') << setw(47) << "=" << endl;
+    for(int i = 0; i < 13; i++){
+        if(i < 7){
+            for(int j = 0; j < 8; j++)
+                cout << "* ";
+            for(int j = 0; j < 32; j++)
+                cout << "=";
+            cout << endl;
+        }
+        else{
+            for(int j = 0; j < 48; j++)
+                cout << "=";
+            cout << endl;
+        }
     }
     cout << endl;
 

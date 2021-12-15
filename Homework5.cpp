@@ -632,23 +632,22 @@ void Swap(int a, int b, int arr []){
     arr[b] = t;
 }
 
-void PosChange(int k, int N, int arr[]){ //k - номер последнего элемента
-    if (k == N){                         //погружение глубже в рекурсию
-        bool b = false;                  // покажет, было ли совпадение номера и порядка 
-        for (int i = 0; i < N; i++){
+void PosChange(int k, int n, int arr[]){ //k - номер последнего элемента
+    if (k == n){                     
+        bool b = false; // было ли совпадение номера и порядка 
+        for (int i = 0; i < n; i++){
             if (arr[i] == i + 1){ 
                 b = true; 
             }
         }
         if (b){
-            res += 1;
+            ++res;
         }
     }
-
     else{
-        for (int i = k; i < N; i++){ //начиная с конца, цикл будет делать перестановки.
+        for (int i = k; i < n; i++){ //перестановки, начиная с конца
             Swap(k, i, arr);
-            PosChange(k + 1, N, arr); //идем в рекурсии до последнего элемента массива
+            PosChange(k + 1, n, arr); //идем в рекурсии до последнего элемента
             Swap(k, i, arr);
         }
     }
